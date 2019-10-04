@@ -12,7 +12,7 @@ module.exports = (env, argv) => {
     mode: 'development',
     context: src,
     entry: {
-      app: './js/App.jsx'
+      app: './js/App.js'
     },
     output: {
       filename: 'js/[name].bundle.js',
