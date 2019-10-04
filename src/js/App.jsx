@@ -1,11 +1,6 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-
-class Layout extends React.Component {
-  render() {
-    return <div>Hello</div>
-  }
-}
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Counter from './Counter'
 
 const app = document.querySelector('#app')
-ReactDOM.render(<Layout />, app)
+ReactDOM.render(<Counter />, app)
