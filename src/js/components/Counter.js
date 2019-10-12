@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
-import Context from './Context'
-import { countUp } from './ActionCreator'
+import CounterContext from '../contexts/CounterContext'
+import { countUp } from '../actions/CountUp'
 
 export default function Counter() {
-  const { count, dispatch } = useContext(Context)
+  const { count, dispatch } = useContext(CounterContext)
   return (
     <div>
       <p>count: {count}</p>
