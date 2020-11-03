@@ -8,26 +8,25 @@ const dist = __dirname + '/dist'
 module.exports = (env, argv) => {
   const PROD = argv.mode === 'production'
 
-  return {
+  let config = {
     mode: 'development',
     context: src,
     entry: {
-      app: './js/App.js'
+      app: './js/App.js',
     },
     output: {
       filename: 'js/[name].bundle.js',
       path: dist,
-      publicPath: '/'
+      publicPath: '/',
     },
-    devtool: PROD ? 'none' : 'source-map',
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx'],
     },
     devServer: {
       inline: true,
       contentBase: dist,
       watchContentBase: true,
-      hot: true
+      hot: true,
     },
     optimization: {
       splitChunks: {
@@ -36,19 +35,19 @@ module.exports = (env, argv) => {
             test: /node_modules/,
             name: 'vendor',
             chunks: 'initial',
-            enforce: true
-          }
-        }
+            enforce: true,
+          },
+        },
       },
       minimizer: PROD
         ? [
             new TerserPlugin({
               terserOptions: {
-                compress: { drop_console: true }
-              }
-            })
+                compress: { drop_console: true },
+              },
+            }),
           ]
-        : []
+        : [],
     },
     module: {
       rules: [
@@ -59,9 +58,9 @@ module.exports = (env, argv) => {
           options: {
             presets: [
               ['@babel/preset-env', { modules: false }],
-              ['@babel/preset-react', {}]
-            ]
-          }
+              ['@babel/preset-react', {}],
+            ],
+          },
         },
         {
           enforce: 'pre',
@@ -69,27 +68,33 @@ module.exports = (env, argv) => {
           exclude: /node_modules/,
           loader: 'eslint-loader',
           options: {
-            fix: true
-          }
+            fix: true,
+          },
         },
         {
           test: /\.html$/,
-          loader: 'html-loader'
+          loader: 'html-loader',
         },
         {
           test: /\.css$/,
-          loader: 'styled-jsx-css-loader'
-        }
-      ]
+          loader: 'styled-jsx-css-loader',
+        },
+      ],
     },
     plugins: [
       new webpack.ProvidePlugin({
-        _: 'lodash'
+        _: 'lodash',
       }),
       new HtmlWebpackPlugin({
         filename: `${dist}/index.html`,
-        template: './html/index.html'
-      })
-    ]
+        template: './html/index.html',
+      }),
+    ],
   }
+
+  if (!PROD) {
+    config['devtool'] = 'source-map'
+  }
+
+  return config
 }
