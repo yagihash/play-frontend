@@ -1,17 +1,17 @@
 import React, { useReducer } from 'react'
 import ReactDOM from 'react-dom'
-import Counter from './components/Counter'
-import CounterContext from './contexts/CounterContext'
-import CounterReducer from './reducers/CounterReducer'
+import Todo from './components/Todo'
+import TodoContext from './contexts/TodoContext'
+import TodoReducer from './reducers/TodoReducer'
 
 export default function App() {
-  const [state, dispatch] = useReducer(CounterReducer, { count: 0 })
+  const [state, dispatch] = useReducer(TodoReducer, {})
 
   return (
     <div>
-      <CounterContext.Provider value={{ ...state, dispatch }}>
-        <Counter />
-      </CounterContext.Provider>
+      <TodoContext.Provider value={{ ...state, dispatch }}>
+        <Todo />
+      </TodoContext.Provider>
     </div>
   )
 }
