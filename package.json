@@ -34,7 +34,7 @@
     "html-webpack-plugin": "5.3.1",
     "husky": "6.0.0",
     "lint-staged": "11.0.0",
-    "prettier": "2.3.0",
+    "prettier": "2.3.1",
     "prop-types": "15.7.2",
     "styled-jsx": "3.4.4",
     "styled-jsx-css-loader": "0.3.0",
